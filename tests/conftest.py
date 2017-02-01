@@ -30,6 +30,9 @@ from __future__ import absolute_import, print_function
 import pytest
 from flask import Flask
 
+from invenio_assets import InvenioAssets
+from invenio_record_editor import InvenioRecordEditor
+
 
 @pytest.fixture()
 def app():
@@ -38,4 +41,6 @@ def app():
     app.config.update(
         TESTING=True
     )
+    InvenioRecordEditor(app)
+    InvenioAssets(app)
     return app
