@@ -23,21 +23,41 @@
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
 
-"""Views tests."""
+"""Test helpers."""
 
 
-def test_index(app):
-    """Test view."""
-    with app.test_client() as client:
-        res = client.get("/editor/")
-        assert res.status_code == 200
+def simple_check(data):
+    errors = {}
+    if data.get('hello', '') == 'world':
+        errors['hello'] = [{
+            'message': 'Hello should not be equal to world',
+            'type': 'warning'
+        }]
+    return errors
 
 
-def test_preview(app):
-    data = {
-        '$schema': 'schema',
-        'title': 'My title'
-    }
-    with app.test_client() as client:
-        res = client.post("/editor/preview", data=data)
-        assert res.status_code == 200
+def other_simple_check(data):
+    errors = {}
+    if data.get('hello', '') == 'world':
+        errors['hello'] = [{
+            'message': 'Hello and world are not compatible',
+            'type': 'error'
+        }]
+    return errors
+
+
+def multiple_error_check(data):
+    errors = {}
+    if data.get('hello', '') == 'world':
+        errors['hello'] = [
+            {
+                'message': 'Hello and world are not compatible',
+                'type': 'error'
+            },
+            {
+                'message': 'This field also contains a warning',
+                'type': 'warning'
+            }
+
+        ]
+    return errors
