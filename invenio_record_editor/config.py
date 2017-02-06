@@ -24,4 +24,13 @@
 
 """Invenio module for editing JSON records."""
 
+
+def _get_template_from_record(record):
+    return 'invenio_record_editor/preview.html'
+
+
 RECORD_EDITOR_INDEX_TEMPLATE = 'invenio_record_editor/index.html'
+
+RECORD_EDITOR_PREVIEW_TEMPLATE_FUNCTION = _get_template_from_record
+"""Function that receives a record and returns the template to be used for
+preview."""

@@ -22,34 +22,28 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Invenio module for editing JSON records."""
 
-from __future__ import absolute_import, print_function
+"""Views tests."""
 
-from flask import Blueprint, current_app, render_template, request
-
-
-blueprint = Blueprint(
-    'invenio_record_editor',
-    __name__,
-    url_prefix='/editor',
-    template_folder='templates',
-    static_folder='static',
-)
+import json
 
 
-@blueprint.route('/', defaults={'path': ''})
-@blueprint.route('/<path:path>')
-def index(path):
-    """Basic view."""
-    return render_template(current_app.config['RECORD_EDITOR_INDEX_TEMPLATE'])
+def test_index(app):
+    """Test view."""
+    with app.test_client() as client:
+        res = client.get('/editor/')
+        assert res.status_code == 200
 
 
-@blueprint.route('/preview', methods=['POST'])
-def preview():
-    """Used for previewing the record being edited."""
-    data = request.get_json()
-    template = current_app.config['RECORD_EDITOR_PREVIEW_TEMPLATE_FUNCTION'](
-        data
-    )
-    return render_template(template, record=data)
+def test_preview(app):
+    data = {
+        '$schema': 'schema',
+        'title': 'My title'
+    }
+    with app.test_client() as client:
+        res = client.post(
+            '/editor/preview',
+            data=json.dumps(data),
+            content_type='application/json'
+        )
+        assert res.status_code == 200
