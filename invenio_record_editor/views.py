@@ -28,7 +28,6 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, current_app, render_template, request
 
-
 blueprint = Blueprint(
     'invenio_record_editor',
     __name__,
@@ -41,13 +40,13 @@ blueprint = Blueprint(
 @blueprint.route('/', defaults={'path': ''})
 @blueprint.route('/<path:path>')
 def index(path):
-    """Basic view."""
+    """Render base view."""
     return render_template(current_app.config['RECORD_EDITOR_INDEX_TEMPLATE'])
 
 
 @blueprint.route('/preview', methods=['POST'])
 def preview():
-    """Used for previewing the record being edited."""
+    """Preview the record being edited."""
     data = request.get_json()
     template = current_app.config['RECORD_EDITOR_PREVIEW_TEMPLATE_FUNCTION'](
         data
