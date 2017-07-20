@@ -29,12 +29,12 @@ from __future__ import absolute_import, division, print_function
 from invenio_assets import NpmBundle
 
 js = NpmBundle(
-    "node_modules/record-editor/dist/inline.*.bundle.js",
-    "node_modules/record-editor/dist/vendor.*.bundle.js",
-    "node_modules/record-editor/dist/main.*.bundle.js",
+    "node_modules/record-editor/dist/inline.bundle.js",
+    "node_modules/record-editor/dist/vendor.bundle.js",
+    "node_modules/record-editor/dist/main.bundle.js",
     depends=("node_modules/record-editor/dist/*.js"),
     output="gen/record-editor.%(version)s.js",
     npm={
-        "record-editor": "~0.5.0"
+        "record-editor": "~0.6.0"
     }
 )
