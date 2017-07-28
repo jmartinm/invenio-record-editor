@@ -26,6 +26,7 @@
 
 from __future__ import absolute_import, division, print_function
 
+from flask_assets import Bundle
 from invenio_assets import NpmBundle
 
 js = NpmBundle(
@@ -37,4 +38,10 @@ js = NpmBundle(
     npm={
         "record-editor": "^0.7.0"
     }
+)
+
+css = Bundle(
+    "node_modules/record-editor/dist/styles.bundle.css",
+    depends=("node_modules/record-editor/dist/*.css"),
+    output="gen/record-editor.%(version)s.css",
 )
