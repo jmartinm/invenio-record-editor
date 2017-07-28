@@ -96,7 +96,8 @@ setup(
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],
         'invenio_assets.bundles': [
-            'invenio_record_editor_js = invenio_record_editor.bundles:js'
+            'invenio_record_editor_js = invenio_record_editor.bundles:js',
+            'invenio_record_editor_css = invenio_record_editor.bundles:css'
         ],
         # 'invenio_base.api_apps': [],
         # 'invenio_base.api_blueprints': [],
