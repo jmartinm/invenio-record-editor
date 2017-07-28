@@ -36,12 +36,6 @@ js = NpmBundle(
     depends=("node_modules/record-editor/dist/*.js"),
     output="gen/record-editor.%(version)s.js",
     npm={
-        "record-editor": "^0.7.0"
+        "record-editor": "^0.8.0"
     }
-)
-
-css = Bundle(
-    "node_modules/record-editor/dist/styles.bundle.css",
-    depends=("node_modules/record-editor/dist/*.css"),
-    output="gen/record-editor.%(version)s.css",
 )
