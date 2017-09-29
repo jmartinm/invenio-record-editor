@@ -27,6 +27,7 @@
 from __future__ import absolute_import, print_function
 
 from flask import Blueprint, current_app, render_template, request
+from flask_login import login_required
 
 blueprint = Blueprint(
     'invenio_record_editor',
@@ -39,6 +40,7 @@ blueprint = Blueprint(
 
 @blueprint.route('/', defaults={'path': ''})
 @blueprint.route('/<path:path>')
+@login_required
 def index(path):
     """Render base view."""
     return render_template(current_app.config['RECORD_EDITOR_INDEX_TEMPLATE'])

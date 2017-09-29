@@ -29,6 +29,7 @@ from __future__ import absolute_import, print_function
 
 import pytest
 from flask import Flask
+from flask_login import LoginManager
 from invenio_assets import InvenioAssets
 
 from invenio_record_editor import InvenioRecordEditor
@@ -39,8 +40,10 @@ def app():
     """Flask application fixture."""
     app = Flask('testapp')
     app.config.update(
-        TESTING=True
+        TESTING=True,
+        LOGIN_DISABLED=True
     )
     InvenioRecordEditor(app)
     InvenioAssets(app)
+    LoginManager(app)
     return app

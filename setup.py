@@ -59,6 +59,7 @@ setup_requires = [
 
 install_requires = [
     'Flask>=0.11.1',
+    'Flask-Login>=0.3.0',
     'invenio-assets>=1.0.0b3',
 ]
 
